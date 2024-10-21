@@ -7,6 +7,7 @@
     <title>My PHP Project</title>
     <!-- <link rel="stylesheet" href="public/assets/css/styles.css"> Link to your CSS file -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
     body,
     html {
@@ -37,11 +38,11 @@
         border: none;
         outline: 0;
         display: inline-block;
-        padding: 20px 25px;
+        padding: 15px 25px;
         color: white;
         font-size: 18px;
         font-weight: 700;
-        background-color: #c00000;
+        background-color: #d91f26;
         text-align: center;
         cursor: pointer;
         width: auto;

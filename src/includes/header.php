@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Set session variables
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['user_name'] = $user['first_name'];
+                $_SESSION['role'] = $user['role'];
 
                 // Redirect to the same page to refresh and hide login/signup buttons
                 header('Location: ' . $_SERVER['PHP_SELF']);
@@ -91,6 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a class="active" href="#membership">Membership</a>
             <a href="#contact">Contact Us</a>
             <a href="#blog">Blog</a>
+            <?php if (isset($_SESSION['role']) == 1): ?>
+            <a href="src/pages/admin.php">Admin</a>
+            <?php endif; ?>
 
             <?php if (isset($_SESSION['user_name'])): ?>
             <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
