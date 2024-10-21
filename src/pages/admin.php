@@ -18,7 +18,7 @@
         margin: 0;
         padding: 0;
         width: 200px;
-        background-color: white;
+        background-color: #10173c;
         position: fixed;
         height: 100%;
         overflow: auto;
@@ -28,13 +28,13 @@
 
     .sidebar a {
         display: block;
-        color: black;
+        color: white;
         padding: 16px;
         text-decoration: none;
     }
 
     .sidebar a.active {
-        background-color: #f5f5f5;
+        background-color: white;
         color: #d91f26;
         margin: 3px 10px;
         border-radius: 5px;
@@ -131,7 +131,7 @@
     <div class="sidebar">
         <img src="public/assets/images/StockCake-Gym Running Workout_1729507439.jpg" class='logo' style='width:80px'
             alt="Logo">
-        <a class="active" href="#home">Home</a>
+        <a class="" href="#home">Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a class="active" href="#about">About</a>
