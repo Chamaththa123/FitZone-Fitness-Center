@@ -67,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt->execute()) {
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_name'] = $first_name;
+                $_SESSION['user_name'] = $user['first_name'];
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['role'] = $user['role'];
 
                 // Redirect to the same page after successful registration
                 header('Location: ' . $_SERVER['PHP_SELF']);
@@ -101,9 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="#membership">Membership</a>
             <a href="contactus.php">Contact Us</a>
             <a href="#blog">Blog</a>
-            <?php if (isset($_SESSION['role']) == 1): ?>
-            <a href="src/pages/admin.php">Admin</a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
+            <a href="admin.php">Admin</a>
             <?php endif; ?>
+
 
             <?php if (isset($_SESSION['user_email'])): ?>
             <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_email']); ?></a>
