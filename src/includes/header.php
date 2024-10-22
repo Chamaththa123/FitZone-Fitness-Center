@@ -1,6 +1,13 @@
 <?php
-session_start();  // Start the session to access session variables
-require 'src/config/config.php';  // Database connection
+// Only start a session if one doesn't already exist
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Start the session to access session variables
+}
+
+// Check if the database connection is not already established to avoid re-requiring in other files
+if (!isset($conn)) {
+    require 'src/config/config.php';  // Database connection
+}
 
 // Handle user login
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Set session variables
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['user_name'] = $user['first_name'];
+                $_SESSION['id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
 
                 // Redirect to the same page to refresh and hide login/signup buttons
@@ -78,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,16 +97,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
     <div class="topnav">
         <img src="public/assets/images/logo.jpg" class='logo' style='width:80px' alt="Logo">
         <div class="split">
-            <a class="active" href="#home">Home</a>
-            <a class="active" href="#membership">Membership</a>
-            <a href="#contact">Contact Us</a>
+            <a href="index.php">Home</a>
+            <a href="#membership">Membership</a>
+            <a href="contactus.php">Contact Us</a>
             <a href="#blog">Blog</a>
             <?php if (isset($_SESSION['role']) == 1): ?>
             <a href="src/pages/admin.php">Admin</a>
             <?php endif; ?>
 
-            <?php if (isset($_SESSION['user_name'])): ?>
-            <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+            <?php if (isset($_SESSION['user_email'])): ?>
+            <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_email']); ?></a>
             <form method="post" style="display:inline;">
                 <button type="submit" name="logout" class="btn">Logout</button>
             </form>
