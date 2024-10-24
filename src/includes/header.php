@@ -102,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
         <div class="split">
             <a href="index.php">Home</a>
             <a href="#membership">Membership</a>
+            <a href="trainer.php">Our Trainers</a>
             <a href="contactus.php">Contact Us</a>
             <a href="#blog">Blog</a>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>

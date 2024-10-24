@@ -99,6 +99,7 @@ $trainer_result = $conn->query($trainer_query);
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-top: 20px;
+        padding-bottom: 20px;
     }
 
     .reply-button {
