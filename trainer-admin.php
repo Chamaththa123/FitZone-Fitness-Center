@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_trainer'])) {
 }
 
 // Fetch trainer data
-$trainer_query = "SELECT id, full_name, image, certification, specialties, experience, description FROM trainers";
+$trainer_query = "SELECT id, full_name, certification, specialties, experience, description FROM trainers";
 $trainer_result = $conn->query($trainer_query);
 
 ?>
