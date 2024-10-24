@@ -171,8 +171,8 @@ $result = $conn->query($query);
     }
 
     thead {
-        background-color: #10173c;
-        color: white;
+        background-color: #d0d0d0;
+        color: #4d4b4b;
     }
 
     th,
@@ -187,15 +187,29 @@ $result = $conn->query($query);
         font-weight: bold;
     }
 
-    tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
+    .reply {
+        border-radius: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        width: 100%;
+        resize: vertical;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    tbody tr:hover {
-        background-color: #f1f1f1;
+    .reply-button {
+        background-color: #00af00;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 7px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 12px;
     }
 
-    @media screen and (max-width: 768px) {
+
+    wid @media screen and (max-width: 768px) {
 
         table,
         th,
@@ -236,6 +250,7 @@ $result = $conn->query($query);
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a class="active" href="contactus-admin.php">Contact Us</a>
+        <a href="trainer-admin.php">Trainers</a>
     </div>
 
     <div class="content">
@@ -271,9 +286,9 @@ $result = $conn->query($query);
                                     echo "<td data-label='Reply'>" . htmlspecialchars($row['reply'] ?? 'No reply yet') . "</td>";
                                     echo "<td>";
                                     echo "<form method='POST' action='" . $_SERVER['PHP_SELF'] . "'>";
-                                    echo "<textarea name='reply' placeholder='Enter your reply' required>" . htmlspecialchars($row['reply'] ?? '') . "</textarea>";
+                                    echo "<textarea name='reply' placeholder='Enter your reply' class='reply' required>" . htmlspecialchars($row['reply'] ?? '') . "</textarea>";
                                     echo "<input type='hidden' name='contact_id' value='" . $row['id'] . "' />";
-                                    echo "<button type='submit' name='submit_reply'>Send Reply</button>";
+                                    echo "<button type='submit' name='submit_reply' class='reply-button'>Send Reply</button>";
                                     echo "</form>";
                                     echo "</td>";
                                     echo "</tr>";
