@@ -112,9 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
             <?php if (isset($_SESSION['user_email'])): ?>
             <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_email']); ?></a>
-            <form method="post" style="display:inline;">
+
+            <a style="padding:0px" href='user-profile.php'><img src="public/assets/images/user.png" class='logo'
+                    style='width:40px' alt="Logo"></a>
+            <!-- <form method="post" style="display:inline;">
                 <button type="submit" name="logout" class="btn">Logout</button>
-            </form>
+            </form> -->
 
             <?php else: ?>
             <button class="btn" onclick="document.getElementById('login').style.display='block'">SIGN IN</button>
