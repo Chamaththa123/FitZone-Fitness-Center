@@ -130,10 +130,11 @@
         <img src="public/assets/images/logo.jpg" class='logo' style='width:150px; display:block; margin: 30px auto;'
             alt="Logo">
 
-        <a class="active" class="" href="qq">Home</a>
-        <a href=" qq">News</a>
-        <a href="qq">Contact</a>
+        <a class="active" class="" href="">Home</a>
+        <a href="">News</a>
+        <a href="">Contact</a>
         <a href="contactus-admin.php">Contact Us</a>
+        <a href="./src/admin/blogs-admin.php">Blogs</a>
     </div>
 
     <div class="content">
