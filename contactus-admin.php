@@ -246,10 +246,11 @@ $result = $conn->query($query);
         <img src="public/assets/images/logo.jpg" class='logo' style='width:150px; display:block; margin: 30px auto;'
             alt="Logo">
 
-        <a class="" href="#home">Home</a>
+        <a class="" href="admin.php">Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
-        <a class="active" href="contactus-admin.php">Contact Us</a>
+        <a href="contactus-admin.php">Contact Us</a>
+        <a href="./src/admin/blogs-admin.php">Blogs</a>
         <a href="trainer-admin.php">Trainers</a>
     </div>
 
