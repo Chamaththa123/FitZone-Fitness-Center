@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="contactus.php">Contact Us</a>
             <a href="#blog">Blog</a>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
-            <a href="admin.php">Admin</a>
+            <a href="src/admin/admin.php">Admin</a>
             <?php endif; ?>
 
 
