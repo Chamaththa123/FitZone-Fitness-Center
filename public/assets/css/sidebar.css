@@ -2,12 +2,10 @@
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #10173c;
+    background-color: #10182F;
     position: fixed;
     height: 100%;
     overflow: auto;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
 }
 
 .sidebar a {
@@ -92,6 +90,7 @@ div.content {
 }
 
 input[type=text],
+input[type=date],
 input[type=password] {
     width: 100%;
     padding: 12px 20px;

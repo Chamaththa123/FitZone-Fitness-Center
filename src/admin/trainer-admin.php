@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($conn)) {
-    require 'src/config/config.php';
+    require '../config/config.php';
 }
 
 // Handle trainer submission
@@ -82,8 +82,8 @@ $trainer_result = $conn->query($trainer_query);
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-XXXXX" crossorigin="anonymous">
-    <link rel="stylesheet" href="public/assets/css/sidebar.css">
-    <link rel="stylesheet" href="public/assets/css/table.css">
+    <link rel="stylesheet" href="../../public/assets/css/sidebar.css">
+    <link rel="stylesheet" href="../../public/assets/css/table.css">
 
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -102,19 +102,64 @@ $trainer_result = $conn->query($trainer_query);
         padding-bottom: 20px;
     }
 
+    #addTrainerModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+    }
+
+    #editTrainerModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+    }
+
+    .border-radius {
+        border-radius: 10px;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .input-item {
+        flex: 1;
+    }
+
     .reply-button {
-        background-color: #00af00;
+        background-color: #198754;
         color: white;
         border: none;
         border-radius: 5px;
         padding: 5px 10px;
         cursor: pointer;
+        font-size: 14px;
         transition: background-color 0.3s ease;
     }
 
     .edit-button,
     .delete-button {
-        background-color: #007bff;
+        background-color: #ffc107;
         color: white;
         border: none;
         border-radius: 5px;
@@ -152,27 +197,37 @@ $trainer_result = $conn->query($trainer_query);
     .closebtn:hover {
         color: black;
     }
+
+    .add-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 14px
+    }
     </style>
 </head>
 
 <body>
 
     <div class="sidebar">
-        <img src="public/assets/images/logo.jpg" class='logo' style='width:150px; display:block; margin: 30px auto;'
-            alt="Logo">
-        <a class="" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <img src="../../public/assets/images/logo.jpg" class='logo'
+            style='width:150px; display:block; margin: 30px auto;' alt="Logo">
+        <a class="" href="admin.php">Home</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a class="active" href="trainer-admin.php">Trainers</a>
+        <a href="blogs-admin.php">Blog</a>
     </div>
 
     <div class="content">
         <div class="container custom-container">
             <div class="header-section">
                 <h3 style='font-weight:600'>Trainers</h3>
-                <button onclick="document.getElementById('addTrainerModal').style.display='block'"
-                    class="w3-button w3-black">Add Trainer</button>
+                <button onclick="document.getElementById('addTrainerModal').style.display='block'" class=" add-btn">Add
+                    Trainer</button>
             </div>
         </div>
 

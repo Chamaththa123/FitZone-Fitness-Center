@@ -1,38 +1,3 @@
-<?php
-// Ensure session is started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Include database connection
-if (!isset($conn)) {
-    require 'src/config/config.php';  // Database connection
-}
-
-// Handle reply submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_reply'])) {
-    $reply = $_POST['reply'];
-    $contact_id = $_POST['contact_id'];
-
-    // Update reply in the contact_us table
-    $stmt = $conn->prepare("UPDATE contact_us SET reply = ? WHERE id = ?");
-    $stmt->bind_param("si", $reply, $contact_id);
-
-    if ($stmt->execute()) {
-        $success_message = "Reply sent successfully!";
-    } else {
-        $error_message = "Failed to send reply: " . $stmt->error;
-    }
-}
-
-// Fetch contact us data
-$query = "SELECT c.id, c.subject, c.message, c.reply, u.first_name, u.last_name 
-          FROM contact_us c 
-          JOIN users u ON c.customer_id = u.id
-          ORDER BY c.created_at DESC";
-$result = $conn->query($query);
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -156,108 +121,25 @@ $result = $conn->query($query);
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-
-    .table-container {
-        max-width: 100%;
-        overflow-x: auto;
-        margin: 20px 0;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #fff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    thead {
-        background-color: #d0d0d0;
-        color: #4d4b4b;
-    }
-
-    th,
-    td {
-        padding: 12px 15px;
-        text-align: left;
-        border: 1px solid #ddd;
-        font-size: 13px
-    }
-
-    th {
-        font-weight: bold;
-    }
-
-    .reply {
-        border-radius: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-        width: 100%;
-        resize: vertical;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .reply-button {
-        background-color: #00af00;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 5px 7px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        font-size: 12px;
-    }
-
-
-    wid @media screen and (max-width: 768px) {
-
-        table,
-        th,
-        td {
-            display: block;
-        }
-
-        th {
-            display: none;
-        }
-
-        td {
-            padding: 10px;
-            text-align: right;
-            position: relative;
-        }
-
-        td::before {
-            content: attr(data-label);
-            position: absolute;
-            left: 0;
-            width: 50%;
-            padding-left: 15px;
-            font-weight: bold;
-            text-align: left;
-        }
-    }
     </style>
 </head>
 
 <body>
 
     <div class="sidebar">
-        <img src="public/assets/images/logo.jpg" class='logo' style='width:150px; display:block; margin: 30px auto;'
-            alt="Logo">
+        <img src="../../public/assets/images/logo.jpg" class='logo'
+            style='width:150px; display:block; margin: 30px auto;' alt="Logo">
 
-        <a class="" href="admin.php">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a class="active" href="admin.php">Home</a>
         <a href="contactus-admin.php">Contact Us</a>
-        <a href="./src/admin/blogs-admin.php">Blogs</a>
         <a href="trainer-admin.php">Trainers</a>
+        <a href="blogs-admin.php">Blog</a>
     </div>
 
     <div class="content">
         <div class="container custom-container">
             <div class="header-section">
-                <h3 style='font-weight:600'>Contact Us</h3>
+                <h2>Header</h2>
                 <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open
                     Modal</button>
             </div>
@@ -265,42 +147,7 @@ $result = $conn->query($query);
         </div>
 
         <div class="container custom-container">
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Subject</th>
-                            <th>Message</th>
-                            <th>Reply</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td data-label='Customer'>" . htmlspecialchars($row['first_name'] ?? '') . " " . htmlspecialchars($row['last_name'] ?? '') . "</td>";
-                                    echo "<td data-label='Subject'>" . htmlspecialchars($row['subject'] ?? '') . "</td>";
-                                    echo "<td data-label='Message'>" . htmlspecialchars($row['message'] ?? '') . "</td>";
-                                    echo "<td data-label='Reply'>" . htmlspecialchars($row['reply'] ?? 'No reply yet') . "</td>";
-                                    echo "<td>";
-                                    echo "<form method='POST' action='" . $_SERVER['PHP_SELF'] . "'>";
-                                    echo "<textarea name='reply' placeholder='Enter your reply' class='reply' required>" . htmlspecialchars($row['reply'] ?? '') . "</textarea>";
-                                    echo "<input type='hidden' name='contact_id' value='" . $row['id'] . "' />";
-                                    echo "<button type='submit' name='submit_reply' class='reply-button'>Send Reply</button>";
-                                    echo "</form>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5'>No messages found.</td></tr>";
-                            }
-?>
-                    </tbody>
-                </table>
-            </div>
+            table here
 
         </div>
     </div>
