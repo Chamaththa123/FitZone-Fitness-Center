@@ -249,6 +249,7 @@ $result = $conn->query($query);
         <a class="" href="admin.php">Home</a>
         <a class='active' ref="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>
+        <a href="class-admin.php">Classes</a>
         <a href="blogs-admin.php">Blog</a>
     </div>
 

@@ -50,7 +50,7 @@ html {
 }
 
 .flip-card-back {
-    background-color: #000000;
+    background-color: #0074D9;
     color: white;
     transform: rotateY(180deg);
     padding: 10px;

@@ -89,13 +89,25 @@ div.content {
     }
 }
 
+/* Styling for input fields */
 input[type=text],
 input[type=date],
-input[type=password] {
+input[type=time],
+input[type=password],
+select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+/* Optional: additional styling for select elements */
+select {
+    appearance: none; /* Remove default arrow for custom styling */
+    background-color: #fff; /* Background color */
+    padding: 12px 20px;
 }
