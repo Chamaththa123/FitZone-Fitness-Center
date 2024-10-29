@@ -333,6 +333,7 @@ $stmt_total->close();
         });
     }
     </script>
+    <?php include 'src/includes/footer.php'; ?>
 </body>
 
 </html>

@@ -42,7 +42,7 @@
         color: white;
         font-size: 18px;
         font-weight: 700;
-        background-color: #d91f26;
+        background-color: #0074D9;
         text-align: center;
         cursor: pointer;
         width: auto;
@@ -73,6 +73,7 @@
 
     <!-- <script src=" public/assets/js/scripts.js">
                 </script> Link to your JS file -->
+    <?php include 'src/includes/footer.php'; ?>
 </body>
 
 </html>

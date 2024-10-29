@@ -101,6 +101,7 @@ $trainer_result = $conn->query($trainer_query);
         <p>No trainers found.</p>
         <?php endif; ?>
     </div>
+    <?php include 'src/includes/footer.php'; ?>
 </body>
 
 </html>

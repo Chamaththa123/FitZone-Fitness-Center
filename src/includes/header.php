@@ -103,7 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="index.php">Home</a>
             <a href="#membership">Membership</a>
             <a href="trainer.php">Our Trainers</a>
+            <a href="trainer.php">Classes</a>
             <a href="contactus.php">Contact Us</a>
+            <a href="about.php">About Us</a>
             <a href="#blog">Blog</a>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
             <a href="src/admin/admin.php">Admin</a>
@@ -111,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
 
             <?php if (isset($_SESSION['user_email'])): ?>
-            <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_email']); ?></a>
+            <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
 
             <a style="padding:0px" href='user-profile.php'><img src="public/assets/images/user.png" class='logo'
                     style='width:40px' alt="Logo"></a>

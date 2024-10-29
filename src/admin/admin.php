@@ -133,6 +133,7 @@
         <a class="active" href="admin.php">Home</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>
+        <a href="class-admin.php">Classes</a>
         <a href="blogs-admin.php">Blog</a>
     </div>
 
