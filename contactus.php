@@ -238,8 +238,10 @@ $stmt_total->close();
     <!-- Main Content Section -->
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:55px">Contact Us</h1>
-            <p style="font-size:20px;">
+            <h1 style="font-size:45px;"><span style='color:#0074D9;background-color:white'>&nbsp;Contact&nbsp;</span>
+                <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Us&nbsp;</span>
+            </h1>
+            <p style="font-size:18px;">
                 Whether you have questions about memberships, classes, or just want to know more about our fitness
                 center, we’re here to help!</p>
         </div>
