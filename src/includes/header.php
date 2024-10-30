@@ -180,6 +180,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
     border: 1px solid #0074D9;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
 </style>
 
 <body>
@@ -214,8 +235,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
     <!-- Display error message, if any -->
     <?php if (isset($error_message)): ?>
-    <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+    <div class="alert" style="background-color: #f44336;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+    </div>
+
     <?php endif; ?>
+
+
+
+
+
 
     <div id="login" class="w3-modal">
         <div class="w3-modal-content w3-animate-top border-radius">

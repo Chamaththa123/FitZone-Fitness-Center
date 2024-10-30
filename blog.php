@@ -7,7 +7,21 @@ if (!isset($conn)) {
     require_once 'src/config/config.php';
 }
 
-$blog_query = "SELECT title, summary, author, date FROM blogs";
+// Check if this is an AJAX request to fetch blog details
+if (isset($_GET['blog_id'])) {
+    $id = intval($_GET['blog_id']);
+    $stmt = $conn->prepare("SELECT title, content, author, date FROM blogs WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $blog = $result->fetch_assoc();
+
+    header('Content-Type: application/json');
+    echo json_encode($blog);
+    exit;
+}
+
+$blog_query = "SELECT id,title, summary, author, date FROM blogs";
 $blog_result = $conn->query($blog_query);
 ?>
 
@@ -54,6 +68,35 @@ $blog_result = $conn->query($blog_query);
         width: auto;
         border-radius: 8px;
     }
+
+    .custom-container {
+        background-color: white;
+        padding: 5px 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #blogView {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+    }
+
+    .border-radius {
+        border-radius: 10px;
+        max-width: 800px;
+        margin: auto;
+    }
     </style>
 </head>
 
@@ -84,7 +127,7 @@ $blog_result = $conn->query($blog_query);
                 <div class='title'><b><?php echo htmlspecialchars($blog['title']); ?></b></div>
                 <div class='summary' style='font-size:12px'><?php echo htmlspecialchars($blog['summary']); ?></div>
                 <div class='title' style='font-size:12px'><i><?php echo htmlspecialchars($blog['author']); ?></i></div>
-                <button>See More</button>
+                <button onclick="showBlogDetails(<?php echo $blog['id']; ?>)">See More</button>
             </div>
         </div>
         <?php endwhile; ?>
@@ -92,6 +135,39 @@ $blog_result = $conn->query($blog_query);
         <p>No trainers found.</p>
         <?php endif; ?>
     </div>
+
+    <div id="blogView" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top border-radius">
+            <div class="w3-container">
+                <span onclick="document.getElementById('blogView').style.display='none'"
+                    class="w3-button w3-display-topright"
+                    style="border-radius: 20px;margin-top:10px;margin-right:10px">&times;</span>
+                <h3 id="blogTitle" style='font-weight:500'></h3>
+                <p id="blogContent"></p>
+                <p><strong>Author:</strong> <span id="blogAuthor"></span></p>
+                <p><strong>Date:</strong> <span id="blogDate"></span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+    function showBlogDetails(blogId) {
+        fetch('?blog_id=' + blogId)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('blogTitle').innerText = data.title;
+                document.getElementById('blogContent').innerText = data.content;
+                document.getElementById('blogAuthor').innerText = data.author;
+                document.getElementById('blogDate').innerText = data.date;
+
+                document.getElementById('blogView').style.display = 'flex';
+            })
+            .catch(error => console.error('Error fetching blog details:', error));
+    }
+
+    function closeBlogView() {
+        document.getElementById('blogView').style.display = 'none';
+    }
+    </script>
     <?php include 'src/includes/footer.php'; ?>
 </body>
 
