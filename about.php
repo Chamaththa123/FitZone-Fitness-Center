@@ -110,7 +110,8 @@ $trainer_result = $conn->query($trainer_query);
 
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:45px;"><span style='color:#0074D9;background-color:white'>&nbsp;About&nbsp;</span>
+            <h1 style="font-size:45px;font-weight:650"><span
+                    style='color:#0074D9;background-color:white'>&nbsp;About&nbsp;</span>
                 <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Us&nbsp;</span>
             </h1>
             <p style="font-size:18px;">
@@ -126,7 +127,7 @@ $trainer_result = $conn->query($trainer_query);
                 style='width:100% ;margin-top:20px;border-radius:15px' alt='contact image'>
         </div>
         <div class="column-contact column-2" style='font-size:14px'>
-            <h2 style='color:#0074D9'>POWER UP YOUR FITNESS WITH FITZONE FITNESS CENTER</h2>
+            <h2 style='color:#0074D9;font-weight:550'>POWER UP YOUR FITNESS WITH FITZONE FITNESS CENTER</h2>
             <div>
                 Fitzone Fitness Center pioneered the Sri Lankan gym industry in 1994 and has remained the largest chain
                 of

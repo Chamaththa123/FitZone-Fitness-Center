@@ -62,7 +62,8 @@ $blog_result = $conn->query($blog_query);
 
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:45px;"><span style='color:#0074D9;background-color:white'>&nbsp;Our&nbsp;</span>
+            <h1 style="font-size:45px;font-weight:650"><span
+                    style='color:#0074D9;background-color:white'>&nbsp;Our&nbsp;</span>
                 <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Blogs&nbsp;</span>
             </h1>
             <p style="font-size:18px;">

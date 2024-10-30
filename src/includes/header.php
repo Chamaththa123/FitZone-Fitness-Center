@@ -93,8 +93,94 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="public/assets/css/header.css">
+<style>
+.custom-container {
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+#login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+#register {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.border-radius {
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-item {
+    flex: 1;
+}
+
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.btn {
+    padding: 3px;
+    width: 80px;
+    background-color: #0074D9;
+    font-size: 12px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+    border-color: #0074D9;
+    border: 1px solid #0074D9;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+</style>
 
 <body>
     <div class="topnav">
@@ -106,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="trainer.php">Classes</a>
             <a href="contactus.php">Contact Us</a>
             <a href="about.php">About Us</a>
-            <a href="blog.php">Blogs</a>
+            <a href="blog.php">Blog</a>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
             <a href="src/admin/admin.php">Admin</a>
             <?php endif; ?>
@@ -117,12 +203,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
             <a style="padding:0px" href='user-profile.php'><img src="public/assets/images/user.png" class='logo'
                     style='width:40px' alt="Logo"></a>
-            <!-- <form method="post" style="display:inline;">
-                <button type="submit" name="logout" class="btn">Logout</button>
-            </form> -->
 
             <?php else: ?>
-            <button class="btn" onclick="document.getElementById('login').style.display='block'">SIGN IN</button>
+            <button class="btn" onclick="document.getElementById('login').style.display='block'">SIGN
+                IN</button>&nbsp;&nbsp;&nbsp;
             <button class="btn" onclick="document.getElementById('register').style.display='block'">SIGN UP</button>
             <?php endif; ?>
         </div>
@@ -133,56 +217,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
     <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
 
-    <!-- Login Modal -->
-    <div id="login" class="modal">
-        <form class="modal-content animate" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('login').style.display='none'" class="close"
-                    title="Close Modal">&times;</span>
+    <div id="login" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top border-radius">
+            <div class="w3-container">
+                <span onclick="document.getElementById('login').style.display='none'"
+                    class="w3-button w3-display-topright"
+                    style="border-radius: 20px;margin-top:10px;margin-right:10px">&times;</span>
+                <h3>Sign In</h3>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                    style='margin-top:20px;margin-bottom:20px;'>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                    <button type="submit" name="login">Sign In</button>
+                </form>
             </div>
-
-            <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
-
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-
-                <button type="submit" name="login">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-            </div>
-        </form>
+        </div>
     </div>
 
-    <!-- Register Modal -->
-    <div id="register" class="modal">
-        <form class="modal-content animate" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('register').style.display='none'" class="close"
-                    title="Close Modal">&times;</span>
+    <div id="register" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top border-radius">
+            <div class="w3-container">
+                <span onclick="document.getElementById('register').style.display='none'"
+                    class="w3-button w3-display-topright"
+                    style="border-radius: 20px;margin-top:10px;margin-right:10px">&times;</span>
+                <h3>Sign Up</h3>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                    style='margin-top:20px;margin-bottom:20px;'>
+                    <label for="fname"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter First Name" name="first_name" required>
+
+                    <label for="lname"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Last Name" name="last_name" required>
+
+                    <label for="lname"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="address"><b>Address</b></label>
+                    <input type="text" placeholder="Enter Address" name="address" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+
+                    <button type="submit" name="register">Register</button>
+                </form>
             </div>
-
-            <div class="container">
-                <label for="fname"><b>First Name</b></label>
-                <input type="text" placeholder="Enter First Name" name="first_name" required>
-
-                <label for="lname"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter Last Name" name="last_name" required>
-
-                <label for="lname"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
-
-                <label for="address"><b>Address</b></label>
-                <input type="text" placeholder="Enter Address" name="address" required>
-
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-
-                <button type="submit" name="register">Register</button>
-            </div>
-        </form>
+        </div>
     </div>
 
     <script>

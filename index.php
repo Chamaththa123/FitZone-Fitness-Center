@@ -58,7 +58,7 @@
     <!-- Main Content Section -->
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:55px">Achieve Your Fitness Goals Today!</h1>
+            <h1 style="font-size:55px;font-weight:650">Achieve Your Fitness Goals Today!</h1>
             <p style="font-size:20px;">
                 Join FITNESS CLUB and Start Your
                 Journey
