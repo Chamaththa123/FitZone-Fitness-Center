@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="index.php">Home</a>
             <a href="#membership">Membership</a>
             <a href="trainer.php">Our Trainers</a>
-            <a href="trainer.php">Classes</a>
+            <a href="class.php">Classes</a>
             <a href="contactus.php">Contact Us</a>
             <a href="about.php">About Us</a>
             <a href="blog.php">Blog</a>

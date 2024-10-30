@@ -22,7 +22,7 @@ $trainer_result = $conn->query($trainer_query);
     <link rel="stylesheet" href="public/assets/css/trainer.css">
     <style>
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/StockCake-Group Yoga Session_1730294146.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("public/assets/images/StockCake-Group Yoga Session_1730294146.jpg");
         height: 70%;
         width: 100%;
         background-repeat: no-repeat;
@@ -114,10 +114,7 @@ $trainer_result = $conn->query($trainer_query);
                     style='color:#0074D9;background-color:white'>&nbsp;About&nbsp;</span>
                 <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Us&nbsp;</span>
             </h1>
-            <p style="font-size:18px;">
-                Meet the experts behind your fitness journey! Our trainers are here to guide, motivate, and help you
-                achieve your goals, whether you're just starting out or pushing toward your next big milestone.
-            </p>
+
         </div>
     </div>
 

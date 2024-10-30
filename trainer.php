@@ -22,7 +22,7 @@ $trainer_result = $conn->query($trainer_query);
     <link rel="stylesheet" href="public/assets/css/trainer.css">
     <style>
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/PHOTO-2022-10-02-20-17-18-1568x1013.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("public/assets/images/PHOTO-2022-10-02-20-17-18-1568x1013.jpg");
         height: 70%;
         width: 100%;
         background-repeat: no-repeat;
