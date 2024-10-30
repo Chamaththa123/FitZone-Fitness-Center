@@ -22,7 +22,7 @@ $trainer_result = $conn->query($trainer_query);
     <link rel="stylesheet" href="public/assets/css/trainer.css">
     <style>
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/rendered_1400x.progressive.webp");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/PHOTO-2022-10-02-20-17-18-1568x1013.jpg");
         height: 70%;
         width: 100%;
         background-repeat: no-repeat;
@@ -62,8 +62,10 @@ $trainer_result = $conn->query($trainer_query);
 
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:55px">Our Trainers</h1>
-            <p style="font-size:20px;">
+            <h1 style="font-size:45px;"><span style='color:#0074D9;background-color:white'>&nbsp;Our&nbsp;</span>
+                <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Trainers&nbsp;</span>
+            </h1>
+            <p style="font-size:18px;">
                 Meet the experts behind your fitness journey! Our trainers are here to guide, motivate, and help you
                 achieve your goals, whether you're just starting out or pushing toward your next big milestone.
             </p>
