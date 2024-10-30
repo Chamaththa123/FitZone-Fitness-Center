@@ -36,7 +36,7 @@ $blog_result = $conn->query($blog_query);
     <link rel="stylesheet" href="public/assets/css/blog.css">
     <style>
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/StockCake-Gym Ready Gear_1730294309.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("public/assets/images/StockCake-Gym Ready Gear_1730294309.jpg");
         height: 70%;
         width: 100%;
         background-repeat: no-repeat;
@@ -110,8 +110,8 @@ $blog_result = $conn->query($blog_query);
                 <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Blogs&nbsp;</span>
             </h1>
             <p style="font-size:18px;">
-                Meet the experts behind your fitness journey! Our trainers are here to guide, motivate, and help you
-                achieve your goals, whether you're just starting out or pushing toward your next big milestone.
+                Discover insights and inspiration for your yoga journey – from mindful practices to wellness tips, all
+                in one place.
             </p>
         </div>
     </div>

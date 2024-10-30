@@ -90,7 +90,7 @@ $stmt_total->close();
     }
 
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("public/assets/images/StockCake-Yoga Class Balance_1729572547.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("public/assets/images/StockCake-Yoga Class Balance_1729572547.jpg");
         height: 70%;
         width: 100%;
         background-repeat: no-repeat;
