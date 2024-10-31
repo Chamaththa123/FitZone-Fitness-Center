@@ -17,11 +17,27 @@ if (isset($_SESSION['user_email'])) {
     $user = $user_result->fetch_assoc();
 }
 
+// Fetch registered classes for the logged-in user
+$registered_classes = [];
+if (isset($user)) {
+    $customer_id = $user['id']; // Assuming 'id' is the customer_id in users table
+    $class_query = $conn->prepare("SELECT class.ClassName, class.StartTime, class.EndTime 
+                                    FROM customer_has_class 
+                                    JOIN class ON customer_has_class.class_id = class.id 
+                                    WHERE customer_has_class.customer_id = ?");
+    $class_query->bind_param("i", $customer_id);
+    $class_query->execute();
+    $class_result = $class_query->get_result();
+
+    while ($class = $class_result->fetch_assoc()) {
+        $registered_classes[] = $class;
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header('Location: ' . $_SERVER['PHP_SELF']);
+    header('Location: index.php');
     exit();
 }
 ?>
@@ -128,13 +144,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
     .edit-button,
     .delete-button {
-        background-color: #007bff;
+        background-color: #dc3545;
         color: white;
         border: none;
         border-radius: 5px;
         padding: 8px 10px;
         cursor: pointer;
-        width: 70px;
+        width: 100px;
         transition: background-color 0.3s ease;
     }
 
@@ -159,7 +175,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 
     <div class="hero-image">
         <div class="hero-text">
-            <h1 style="font-size:55px">User Profile</h1>
+            <h1 style="font-size:45px;font-weight:650"><span
+                    style='color:#0074D9;background-color:white'>&nbsp;User&nbsp;</span>
+                <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Profile&nbsp;</span>
+            </h1>
         </div>
     </div>
     <div class="trainer-card">
@@ -167,28 +186,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <div class="section right-section">
                 <div style="display: flex; justify-content: center;">
                     <img src="public/assets/images/user.png" class="logo" style="width:160px;" alt="Logo">
+
                 </div>
-
-
-
+                <form method="post" action="">
+                    <center> <button type='submit' name="logout" class='delete-button'
+                            style=' margin-top: 40px;'>Logout</button></center>
+                </form>
             </div>
             <div class="section left-section">
                 <?php if (isset($user)): ?>
-                <h2><?php echo htmlspecialchars($user['first_name'] . " " . $user['last_name']); ?></h2>
+                <h2 style='font-weight:500'>
+                    <?php echo htmlspecialchars($user['first_name'] . " " . $user['last_name']); ?></h2>
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
                 <p><strong>Address:</strong> <?php echo htmlspecialchars($user['address']); ?></p>
                 <p><strong>Registered Membership Plans</strong>
                 </p>
-                <form method="post" action="">
-                    <button type='submit' name="logout" class='delete-button'>Logout</button>
-                </form>
+                <p><strong>Registered Classes</strong>
+                    <?php if (!empty($registered_classes)): ?>
+                <ul>
+                    <?php foreach ($registered_classes as $class): ?>
+                    <li>
+                        <strong><?php echo htmlspecialchars($class['ClassName']); ?></strong>
+                        &nbsp;&nbsp;&nbsp;Time:
+                        <?php echo htmlspecialchars($class['StartTime']) . " - " . htmlspecialchars($class['EndTime']); ?>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php else: ?>
+                <p>You have not registered for any classes.</p>
+                <?php endif; ?>
+
                 <?php else: ?>
                 <p>No user details available.</p>
                 <?php endif; ?>
             </div>
         </div>
-    </div>
 
+    </div>
+    <?php include 'src/includes/footer.php'; ?>
 </body>
 
 </html>

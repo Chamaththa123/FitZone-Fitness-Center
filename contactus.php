@@ -221,7 +221,7 @@ $stmt_total->close();
     }
 
     .pagination a.active {
-        background-color: #4CAF50;
+        background-color: #0074D9;
         color: white;
     }
 
@@ -274,7 +274,7 @@ $stmt_total->close();
                     <label for="password"><b>Message</b></label>
                     <input type="text" placeholder="Enter message" name="message" required>
 
-                    <button type="submit" name="submit_contact">Register</button>
+                    <button type="submit" name="submit_contact">Send Message</button>
                 </div>
             </form>
 
