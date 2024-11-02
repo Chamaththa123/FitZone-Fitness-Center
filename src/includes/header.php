@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
         <img src="public/assets/images/logo.jpg" class='logo' style='width:80px' alt="Logo">
         <div class="split">
             <a href="index.php">Home</a>
-            <a href="#membership">Membership</a>
+            <a href="membership.php">Membership</a>
             <a href="trainer.php">Our Trainers</a>
             <a href="class.php">Classes</a>
             <a href="contactus.php">Contact Us</a>
