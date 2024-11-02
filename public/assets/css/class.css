@@ -61,6 +61,15 @@ html {
     width: 100px;
     border-radius: 50px;
     padding:5px  3px;
+    font-size:13px
+}
+
+.cancel-btn {
+  float: right;
+  width: 100px;
+  border-radius: 50px;
+  padding:5px  3px;
+  background-color: #dc3545;
 }
 
 .already-registered{

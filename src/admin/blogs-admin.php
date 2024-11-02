@@ -214,6 +214,7 @@ $trainer_result = $conn->query($trainer_query);
         <img src="../../public/assets/images/logo.jpg" class='logo'
             style='width:150px; display:block; margin: 30px auto;' alt="Logo">
         <a class="" href="admin.php">Home</a>
+        <a class="" href="membership-admin.php">Memberships</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>
         <a href="class-admin.php">Classes</a>
