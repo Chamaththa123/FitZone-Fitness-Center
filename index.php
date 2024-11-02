@@ -16,7 +16,7 @@
     }
 
     .hero-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("public/assets/images/StockCake-Gym Running Workout_1729507439.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("public/assets/images/StockCake-Yoga Class Session_1730543693.jpg");
         height: 90%;
         background-position: center;
         background-repeat: no-repeat;
@@ -60,12 +60,13 @@
         <div class="hero-text">
             <h1 style="font-size:55px;font-weight:650">Achieve Your Fitness Goals Today!</h1>
             <p style="font-size:20px;">
-                Join FITNESS CLUB and Start Your
+                Join <i>FitZone Fitness Club</i> and Start Your
                 Journey
                 Towards a<br />
                 Healthier,
                 Stronger You!</p>
-            <button>Join Us Today</button>
+            <button onclick="window.location.href='membership.php'">Join Us Today</button>
+
         </div>
     </div>
 
