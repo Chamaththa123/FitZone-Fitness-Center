@@ -231,6 +231,7 @@ $class_result = $conn->query($class_query);
         <a href="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>
         <a class="active" href="class-admin.php">Classes</a>
+        <a href="appointment-admin.php">Appointments</a>
         <a href="blogs-admin.php">Blog</a>
     </div>
 

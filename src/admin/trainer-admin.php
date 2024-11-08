@@ -221,6 +221,7 @@ $trainer_result = $conn->query($trainer_query);
         <a href="contactus-admin.php">Contact Us</a>
         <a class="active" href="trainer-admin.php">Trainers</a>
         <a href="class-admin.php">Classes</a>
+        <a class="active" href="appointment-admin.php">Appointments</a>
         <a href="blogs-admin.php">Blog</a>
     </div>
 
