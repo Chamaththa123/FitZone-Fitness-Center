@@ -47,3 +47,38 @@ select {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width: 768px) {
+    .container-contact {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .column-contact {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 30px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+    }
+
+    .hero-text button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .accordion {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .pagination a {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

@@ -125,6 +125,58 @@ if (isset($_SESSION['registration_error'])) {
     .alert-error {
         background-color: #dc3545;
     }
+
+    @media (max-width: 768px) {
+        .hero-text h1 {
+            font-size: 35px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+        }
+
+        .class-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            margin: 10px;
+        }
+
+        .container-c {
+            padding: 15px;
+        }
+
+        .details {
+            font-size: 14px;
+        }
+
+        .reg-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-text h1 {
+            font-size: 28px;
+        }
+
+        .hero-text p {
+            font-size: 14px;
+        }
+
+        .container-c {
+            padding: 10px;
+        }
+
+        .details {
+            font-size: 13px;
+        }
+    }
     </style>
 </head>
 
