@@ -225,8 +225,7 @@ $class_result = $conn->query($class_query);
 
     <div class="sidebar">
         <img src="../../public/assets/images/logo.jpg" class='logo'
-            style='width:150px; display:block; margin: 30px auto;' alt="Logo">
-        <a class="" href="admin.php">Home</a>
+            style='width:150px;height:100px; display:block; margin: 30px auto;border-radius:10%' alt="Logo">
         <a class="" href="membership-admin.php">Memberships</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>
@@ -383,7 +382,7 @@ $class_result = $conn->query($class_query);
                         </div>
                     </div>
 
-                    <button type="submit" name="submit_class" class="reply-button">Add Trainer</button>
+                    <button type="submit" name="submit_class" class="reply-button">Add Class</button>
                 </form>
             </div>
         </div>

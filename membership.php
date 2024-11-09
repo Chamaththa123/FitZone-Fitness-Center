@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card">
             <div class="container-c">
                 <div class='classname'><b><?php echo htmlspecialchars($membership['PlanName']); ?></b></div>
-                <div class='details'>Price : <?php echo htmlspecialchars($membership['Price']); ?> USD</div>
+                <div class='details'>Price : Rs.<?php echo htmlspecialchars($membership['Price']); ?> </div>
                 <div class='details'>Duration : <?php echo htmlspecialchars($membership['Duration']); ?></div>
                 <div class='details'>Benefits : <br /><?php echo htmlspecialchars($membership['Benefits']); ?></div>
                 <div class='details'>Special Promotions :

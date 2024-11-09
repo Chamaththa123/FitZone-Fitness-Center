@@ -215,13 +215,12 @@ $trainer_result = $conn->query($trainer_query);
 
     <div class="sidebar">
         <img src="../../public/assets/images/logo.jpg" class='logo'
-            style='width:150px; display:block; margin: 30px auto;' alt="Logo">
-        <a class="" href="admin.php">Home</a>
+            style='width:150px;height:100px; display:block; margin: 30px auto;border-radius:10%' alt="Logo">
         <a class="" href="membership-admin.php">Memberships</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a class="active" href="trainer-admin.php">Trainers</a>
         <a href="class-admin.php">Classes</a>
-        <a class="active" href="appointment-admin.php">Appointments</a>
+        <a href="appointment-admin.php">Appointments</a>
         <a href="blogs-admin.php">Blog</a>
     </div>
 

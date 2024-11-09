@@ -10,7 +10,10 @@ if (!isset($conn)) {
 // Fetch logged-in user details
 if (isset($_SESSION['user_email'])) {
     $user_email = $_SESSION['user_email'];
-    $user_query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $user_query = $conn->prepare("SELECT users.*, membership.PlanName 
+                                  FROM users 
+                                  LEFT JOIN membership ON users.membership_id = membership.id 
+                                  WHERE users.email = ?");
     $user_query->bind_param("s", $user_email);
     $user_query->execute();
     $user_result = $user_query->get_result();
@@ -200,6 +203,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
                 <p><strong>Address:</strong> <?php echo htmlspecialchars($user['address']); ?></p>
                 <p><strong>Registered Membership Plans</strong>
+                <ul>
+
+                    <li><?php echo htmlspecialchars($user['PlanName'] ?? 'No membership plan'); ?>&nbsp; Membership Plan
+                    </li>
+                </ul>
                 </p>
                 <p><strong>Registered Classes</strong>
                     <?php if (!empty($registered_classes)): ?>

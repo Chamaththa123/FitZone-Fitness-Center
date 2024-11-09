@@ -7,26 +7,39 @@ if (!isset($conn)) {
     require_once 'src/config/config.php';
 }
 
-// Fetch classes with trainers
+// Initialize messages
+$registration_success = null;
+$registration_error = null;
+
+// Capture search input
+$search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+// Modify the SQL query to include search filter if $search_query is set
 $class_query = "SELECT class.*, trainers.full_name AS TrainerName 
                 FROM class 
                 JOIN trainers ON class.TrainerID = trainers.id";
-$trainer_result = $conn->query($class_query);
+
+if ($search_query) {
+    $class_query .= " WHERE class.ClassName LIKE ? OR trainers.full_name LIKE ?";
+}
+
+$stmt = $conn->prepare($class_query);
+if ($search_query) {
+    $search_param = '%' . $search_query . '%';
+    $stmt->bind_param("ss", $search_param, $search_param);
+}
+$stmt->execute();
+$trainer_result = $stmt->get_result();
 
 // Check if user is logged in
 $is_logged_in = isset($_SESSION['id']);
 $customer_id = $is_logged_in ? $_SESSION['id'] : null;
-
-// Initialize messages
-$registration_success = null;
-$registration_error = null;
 
 // Handle class registration
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register_class_id'])) {
     $class_id = $_POST['register_class_id'];
 
     if ($is_logged_in) {
-        // Check if the user is already registered for the class
         $check_query = $conn->prepare("SELECT * FROM customer_has_class WHERE customer_id = ? AND class_id = ?");
         $check_query->bind_param("ii", $customer_id, $class_id);
         $check_query->execute();
@@ -35,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register_class_id'])) 
         if ($check_result->num_rows > 0) {
             $_SESSION['registration_error'] = "You are already registered for this class.";
         } else {
-            // Register the customer for the class
             $stmt = $conn->prepare("INSERT INTO customer_has_class (customer_id, class_id) VALUES (?, ?)");
             $stmt->bind_param("ii", $customer_id, $class_id);
 
@@ -48,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register_class_id'])) 
         }
         $check_query->close();
 
-        // Redirect to avoid form resubmission on refresh
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
@@ -195,6 +206,13 @@ if (isset($_SESSION['registration_error'])) {
             </p>
         </div>
     </div>
+    <form method="get" action="" style="margin: 20px; width: 50%; display: flex; align-items: center;">
+        <input type="text" name="search" placeholder="Search by class or trainer name"
+            value="<?php echo htmlspecialchars($search_query); ?>" style="flex: 1; padding: 8px;width:400px">
+        <button type="submit" style="padding: 8px 15px;width:100px">Search</button>
+    </form>
+
+
     <div>
 
         <?php if ($registration_success): ?>

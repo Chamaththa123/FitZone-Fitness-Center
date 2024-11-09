@@ -191,9 +191,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reject_appointment']))
 <body>
 
     <div class="sidebar">
-        <img src="../../public/assets/images/logo.jpg" class='logo'
-            style='width:150px; display:block; margin: 30px auto;' alt="Logo">
-        <a class="" href="admin.php">Home</a>
+    <img src="../../public/assets/images/logo.jpg" class='logo'
+    style='width:150px;height:100px; display:block; margin: 30px auto;border-radius:10%' alt="Logo">
         <a class="" href="membership-admin.php">Memberships</a>
         <a href="contactus-admin.php">Contact Us</a>
         <a href="trainer-admin.php">Trainers</a>

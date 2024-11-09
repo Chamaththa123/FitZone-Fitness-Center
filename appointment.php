@@ -261,19 +261,19 @@ if (isset($_SESSION['id'])) {
     <div class="hero-image">
         <div class="hero-text">
             <h1 style="font-size:45px;font-weight:650"><span
-                    style='color:#0074D9;background-color:white'>&nbsp;Contact&nbsp;</span>
-                <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Us&nbsp;</span>
+                    style='color:#0074D9;background-color:white'>&nbsp;Book&nbsp;</span>
+                <span style='color:white;background-color:#0074D9;margin-left:-15px'>&nbsp;Appointment&nbsp;</span>
             </h1>
             <p style="font-size:18px;">
-                Whether you have questions about memberships, classes, or just want to know more about our fitness
-                center, we’re here to help!</p>
+                Book your appointment today and start your journey to wellness. Choose a time, select a trainer, and let
+                us help you reach your goals with personalized, dedicated support.</p>
         </div>
     </div>
 
 
     <div class="container-contact">
         <div class="column-contact column-1">
-            <h2>GET IN TOUCH WITH US</h2>
+            <h2>BOOK APPOINTMENT</h2>
 
             <?php if (isset($appointment_success_message)): ?>
             <div class="alert-success">
