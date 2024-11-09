@@ -44,41 +44,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Handle user registration
-    if (isset($_POST['register'])) {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);  // Hash the password
+// Handle user registration
+if (isset($_POST['register'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);  // Hash the password
 
-        // Check if the user already exists
-        $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $checkEmail->bind_param("s", $email);
-        $checkEmail->execute();
-        $result = $checkEmail->get_result();
+    // Check if the user already exists
+    $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $checkEmail->bind_param("s", $email);
+    $checkEmail->execute();
+    $result = $checkEmail->get_result();
 
-        if ($result->num_rows > 0) {
-            $error_message = "User already exists!";
+    if ($result->num_rows > 0) {
+        $error_message = "User already exists!";
+    } else {
+        // Insert new user
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, address, password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $first_name, $last_name, $email, $address, $password);
+
+        if ($stmt->execute()) {
+            // Retrieve the newly created user ID
+            $user_id = $stmt->insert_id;
+
+            // Set session variables
+            $_SESSION['user_email'] = $email;
+            $_SESSION['user_name'] = $first_name;
+            $_SESSION['id'] = $user_id;
+            $_SESSION['role'] = 0;  // Set default role or fetch from the database if needed
+
+            // Redirect to the same page after successful registration
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit();
         } else {
-            // Insert new user
-            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, address, password) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $first_name, $last_name, $email, $address, $password);
-
-            if ($stmt->execute()) {
-                $_SESSION['user_email'] = $email;
-                $_SESSION['user_name'] = $first_name;
-                $_SESSION['user_name'] = $user['first_name'];
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
-
-                // Redirect to the same page after successful registration
-                header('Location: ' . $_SERVER['PHP_SELF']);
-                exit();
-            } else {
-                $error_message = "Error during registration: " . $stmt->error;
-            }
+            $error_message = "Error during registration: " . $stmt->error;
         }
     }
+}
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
@@ -211,16 +216,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             <a href="membership.php">Membership</a>
             <a href="trainer.php">Our Trainers</a>
             <a href="class.php">Classes</a>
+            <a href="appointment.php">Appointments</a>
             <a href="contactus.php">Contact Us</a>
             <a href="about.php">About Us</a>
             <a href="blog.php">Blog</a>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
-            <a href="src/admin/admin.php">Admin</a>
+            <a href="src/admin/membership-admin.php">Admin</a>
             <?php endif; ?>
 
 
-            <?php if (isset($_SESSION['user_email'])): ?>
-            <a class="user-email" style='margin-left:20px'> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+            <?php if (isset($_SESSION['user_name'])): ?>
+            <a class="user-email" style='margin-left:20px'>
+                <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+            </a>
 
             <a style="padding:0px" href='user-profile.php'><img src="public/assets/images/user.png" class='logo'
                     style='width:40px' alt="Logo"></a>

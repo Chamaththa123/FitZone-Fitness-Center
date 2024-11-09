@@ -120,6 +120,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .alert-error {
         background-color: #dc3545;
     }
+
+    @media only screen and (max-width: 768px) {
+        .hero-text {
+            font-size: 1em;
+            width: 80%;
+        }
+
+        .alert-success,
+        .alert-error {
+            font-size: 0.9em;
+            padding: 10px;
+        }
+
+        .classname {
+            font-size: 1.1em;
+        }
+
+        .details {
+            font-size: 0.85em;
+        }
+
+        .reg-btn {
+            padding: 8px;
+            font-size: 0.9em;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .hero-text h1 {
+            font-size: 1.8em;
+            line-height: 1.2em;
+        }
+
+        .class-container {
+            margin: 10px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+        }
+    }
     </style>
 </head>
 
@@ -166,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card">
             <div class="container-c">
                 <div class='classname'><b><?php echo htmlspecialchars($membership['PlanName']); ?></b></div>
-                <div class='details'>Price : <?php echo htmlspecialchars($membership['Price']); ?> USD</div>
+                <div class='details'>Price : Rs.<?php echo htmlspecialchars($membership['Price']); ?> </div>
                 <div class='details'>Duration : <?php echo htmlspecialchars($membership['Duration']); ?></div>
                 <div class='details'>Benefits : <br /><?php echo htmlspecialchars($membership['Benefits']); ?></div>
                 <div class='details'>Special Promotions :
